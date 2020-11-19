@@ -16,7 +16,7 @@ Ya casi termina el curso 😱. Por eso, acá te tiramos algo bien complicado par
 - Trabajar entre todos
 - No es obligatorio, pero si hay un diagrama de cómo funciona por detrás el proyecto y qué servicios de AWS utiliza (se puede usar draw.io)
 
-INPUT:
+## INPUT:
 	- Nombre
 	- Apellido
 	- Dirección
@@ -28,23 +28,23 @@ INPUT:
 	- Donante (boolean)
 	- Firma (href)
 	- Foto (href)
-OUTPUT:
+## OUTPUT:
 	- Fecha de emisión
 	- Fecha de vencimiento
 	- N° de trámite
 	- N° DNI
--------------------------------------------
-AGG 1 => Marcos x2, Ayrton, Martin B
-	API GATEWAY 
-	LAMBDA 1 (validacion de input) 
-	SQS 
-AGG 2 => Mariano, Gonza, Martin C, Ema
-	LAMBDA 2 (genera el output) 
-	SNS (mail que avisa que el tramite se inició)
-AGG 3
-	(endpoint de consulta)
--------------------------------------------
-GITHUB
+## -------------------------------------------
+## AGG 1 => Marcos x2, Ayrton, Martin B
+	- API GATEWAY 
+	- LAMBDA 1 (validacion de input) 
+	- SQS 
+## AGG 2 => Mariano, Gonza, Martin C, Ema
+	- LAMBDA 2 (genera el output) 
+	- SNS (mail que avisa que el tramite se inició)
+## AGG 3
+	- (endpoint de consulta)
+## -------------------------------------------
+## GITHUB
 
 
 
