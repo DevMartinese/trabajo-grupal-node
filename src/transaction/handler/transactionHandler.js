@@ -9,5 +9,5 @@ const transactionDomain = require("../domain/transactionDomain");
 const retryStrategy = (receiveCount) => 5 * receiveCount;
 
 module.exports.handler = async (events, context) => {
-    return batchEventMapper({ events, context }, inputMode, transactionDomain, outputMode, retryStrategy);
+    return batchEventMapper({ events, context }, inputMode, transactionDomain, outputMode);
 };

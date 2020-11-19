@@ -7,9 +7,9 @@ class TransactionSuccessfulEvent extends DownstreamEvent {
             specversion: 'v1.0.0',
             payload: payload,
             meta: meta,
+
             schema: {
-                creationDate: { type: Date, required: true },
-                expirationDate: { type: Date, required: true },
+                strict: false,
                 transactionNumber: { type: Number, required: true },
                 documentNumber: { type: Number, required: true }
             }

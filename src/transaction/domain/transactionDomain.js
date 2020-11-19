@@ -1,6 +1,8 @@
 const { v4: uuidv4 } = require("uuid");
-const { transactionService } = require('../service/transactionService')
+const { transactionService } = require('../service/transactionService');
+const { emitTransactionSuccessful } = require('../service/emitTransactionSuccessful');
 const { TransactionValidation } = require('../schema/input/transactionValidation');
+const { TransactionSuccessfulEvent } = require('../schema/event/transaccionSuccessful');
 
 
 module.exports = async (eventPayload, eventMeta) => {
@@ -14,12 +16,12 @@ module.exports = async (eventPayload, eventMeta) => {
         const date = new Date();
         date.setFullYear(date.getFullYear() + 1);
         const transactionNumber = Math.random(11111111, 99999999);
-        const dniNumber = Math.random(9, 999999) + 60000000;
+        const documentNumber = Math.random(9, 999999) + 60000000;
         const output = {
             creationDate: Date.now(),
             expirationDate: date,
             transactionNumber,
-            dniNumber
+            documentNumber
         }
         // Guardar en DynamoDB
         await transactionService({
@@ -33,6 +35,7 @@ module.exports = async (eventPayload, eventMeta) => {
 
         return { body: 'Transaction successful' };
     } catch (error) {
+        console.error(error);
         return { statusCode: 500, body: error };
     }
 

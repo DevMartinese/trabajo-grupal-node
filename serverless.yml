@@ -36,11 +36,6 @@ functions:
     iamRoleStatements:
       - Effect: Allow
         Action:
-          - sqs:ReceiveMessage
-        Resource:
-          - !GetAtt DNIQueue.Arn
-      - Effect: Allow
-        Action:
           - sns:Publish
         Resource:
           - !Ref DNITopic
