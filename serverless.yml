@@ -1,0 +1,57 @@
+service: dni-ebased
+
+plugins:
+  - serverless-iam-roles-per-function
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+
+functions:
+  ValidationHandler:
+    handler: src/validation/handler/validationHandler.handler
+    environment:
+      QUEUE_URL: !Ref DNIQueue
+    iamRoleStatementsName: ${self:service}-${self:provider.stage}-ValidationHandler
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - sqs:SendMessage
+        Resource:
+          - !GetAtt DNIQueue.Arn
+    events:
+      - http:
+          path: dni-ebased-sns/create
+          method: post
+          cors: true
+
+  TransactionHandler:
+    handler: src/transaction/handler/transactionHandler.handler
+    iamRoleStatementsName: ${self:service}-${self:provider.stage}-TransactionHandler
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - sqs:ReceiveMessage
+        Resource:
+          - !GetAtt DNIQueue.Arn
+    events:
+      - sqs:
+          arn:
+            !GetAtt DNIQueue.Arn
+
+resources:
+  Resources:
+    DNIQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:service}-${self:provider.stage}-DNIQueue
+    DNITopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        DisplayName: DNI SNS Topic
+        TopicName: ${self:service}-${self:provider.stage}-DNITopic
+        Subscription:
+          - Protocol: email
+            Endpoint: marcosalejandrovalle@gmail.com
