@@ -7,13 +7,11 @@ module.exports = async (commandPayload, commandMeta) => {
     names,
     lastName,
     email,
-    address,
     locality,
     province,
     sex,
     nationality,
     birthDate,
-    donor,
     signature,
     photo,
   } = commandPayload;
@@ -34,7 +32,6 @@ module.exports = async (commandPayload, commandMeta) => {
   if (sex.toUpperCase() !== 'M' && sex.toUpperCase() !== 'F') return { status:400 ,body:"El sexo solo puede ser M o F"};
   if ( !validator.isAlpha(nationality, locale)) return { status:400 ,body:"El formato de nacionaldiad es incorrecto "};
   if ( !validator.isDate(birthDate,"DD/MM/YYYY")) return { status:400 ,body:"El formato de fecha de nacimiento es incorrecto "};
-  if ( !validator.isAlpha(donor, locale)) return { status:400 ,body:"El formato de la donor es incorrecto "};
   if ( !validator.isURL(signature)) return { status:400 ,body:"El formato de la firma es incorrecto "};
   if ( !validator.isURL(photo)) return { status:400 ,body:"El formato de la foto es incorrecto "};
 
