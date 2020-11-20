@@ -18,8 +18,8 @@ class TransactionValidation extends InputValidation {
                 nationality: { type: String, min: 1, max: 20, required: true },
                 birthDate: { type: String, min: 10, max: 10, required: true },
                 donor: { type: Boolean, default: true },
-                signature: { type: String, min: 2, max: 50, required: true },
-                photo: { type: String, min: 2, max: 50, required: true }
+                signature: { type: String, min: 2, max: 500, required: true },
+                photo: { type: String, min: 2, max: 500, required: true }
             }
         })
     }

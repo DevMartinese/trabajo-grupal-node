@@ -6,6 +6,7 @@ const { TransactionSuccessfulEvent } = require('../schema/event/transaccionSucce
 
 
 module.exports = async (eventPayload, eventMeta) => {
+    console.log('payload y meta',eventPayload, eventMeta);
     // Input validation
     const person = new TransactionValidation(eventPayload, eventMeta).get();
 

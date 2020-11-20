@@ -62,7 +62,7 @@ resources:
         TopicName: ${self:service}-${self:provider.stage}-DNITopic
         Subscription:
           - Protocol: email
-            Endpoint: marcosalejandrovalle@gmail.com
+            Endpoint: emaapirata@gmail.com
     DNITable:
       Type: AWS::DynamoDB::Table
       Properties:
